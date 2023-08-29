@@ -1,5 +1,5 @@
 {% load static%}
-{% csrf_token %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,7 +103,7 @@
     margin-top: 50px;
     margin-left: 3px;
     margin-right: 3px;
-    display: none; /* Hide the card initially */
+     /* Hide the card initially */
   }
 
   .card h4 {
@@ -120,11 +120,7 @@
 </head>
 <body>
 
-<div class="navbar">
-  <div class="navbar-logo">
-    <h1 class="logo">FloodFocus</h1>
-  </div>
-</div>
+
 
 <div class="container">
   <div class="col-7">
@@ -132,30 +128,19 @@
   </div>
   <div class="col-5" style="background-color:#a8dbef">
     <div class="search-container">
-      <div class="location-content text-center">
-        <form action="{% url 'index' %}" method="post">
-          {% csrf_token %}
-          <input type="text" name="location" id="location" placeholder="Enter your location"/>
-          <input type="submit" name="sumbit" id="submit" value="Check result"/>
-        </form>
-      </div>
 
       <div class="card" id="location-card">
         <img src="data:image/png;base64,{{ image_base64 }}" alt="Location Image" class="location-image">
-        <h4><span class="icon"><i class="fas fa-map-marker-alt"></i></span>Location: Dummy Location</h4>
-        <h4><span class="icon"><i class="fas fa-thermometer-half"></i></span>Temperature: 25°C</h4>
-        <h4><span class="icon"><i class="fas fa-cloud-showers-heavy"></i></span>Rainfall: 5mm</h4>
-        <h4><span class="icon"><i class="fas fa-tint"></i></span>Humidity: 70%</h4>
+        <h4><span class="icon"><i class="fas fa-map-marker-alt"></i></span>Location: {{location}}</h4>
+        <h4><span class="icon"><i class="fas fa-thermometer-half"></i></span>Temperature: {{ temperature }}°C</h4>
+        <h4><span class="icon"><i class="fas fa-cloud-showers-heavy"></i></span>Rainfall: {{ rainfall }}mm</h4>
+        <h4><span class="icon"><i class="fas fa-tint"></i></span>Humidity: {{ humidity }}%</h4>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  /*function showImageAndCard() {
-    document.querySelector(".location-content").style.display = "none"; // Hide location icon
-    document.querySelector("#location-card").style.display = "block"; // Show card content
-  }*/
   var map = L.map('map').setView([0, 0], 2);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
