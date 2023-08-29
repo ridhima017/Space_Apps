@@ -1,0 +1,52 @@
+{% load static%}
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+        
+<div class="navbar">
+    <div class="navbar-logo">
+     <h1 class="logo">FloodFocus</h1>
+    </div>
+  </div>
+      
+        <!-- Jumbotron -->
+        <div class="p-5 text-center bg-light">
+          <h1 class="mb-3 tag">Empowering Resilience: Your Flood Insights Hub</h1>
+          <h4 class="mb-3 para1">
+             Embrace the current moment with 
+              a dynamic real-time flood analysis. Witness the unfolding narrative 
+              of ongoing floods, depicted vividly through
+               up-to-the-minute visualizations
+                and live updates. 
+                </h4>
+                <div class="search-container">
+                   
+                  <button id="search-button" class="search-button">Check Flood Risk in your area</button>
+
+                  </div>
+        </div>
+        <!-- Jumbotron -->
+      </header>
+
+
+
+
+
+      <script>
+        document.getElementById("search-button").addEventListener("click", function() {
+            window.location.href = "{% url 'monitor_map' %}";
+        });
+        </script>
+        
+  </body>
+  </html>

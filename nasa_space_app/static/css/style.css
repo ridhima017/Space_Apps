@@ -1,0 +1,86 @@
+/* Jumbotron styles */
+.text-center {
+    text-align: center; /* Center align text */
+  } 
+  .p-5 {
+    padding: 3rem !important; /* Add padding to the jumbotron */
+  }
+  
+  /* Jumbotron headings */
+  h1 {
+    font-size: 3rem; /* Heading font size */
+    margin-bottom: 1rem; /* Bottom margin */
+  }
+  
+  h4 {
+    font-size: 1.5rem; /* Subheading font size */
+    margin-bottom: 1.5rem; /* Bottom margin */
+  }
+  
+  /* Call to action button */
+  .btn-primary {
+    background-color: #007bff; /* Button background color */
+    border: none; /* Remove button border */
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3; /* Button background color on hover */
+  }
+
+  
+  .para1 {
+    padding-left: 6rem;
+    margin-right: 8rem;
+    font-weight: lighter;
+  }
+
+
+  .para1{
+    padding-left: 6rem;
+    margin-right: 6rem;
+    font-weight: lighter;
+  }
+  .navbar {
+
+    overflow: hidden;
+  }
+
+  .navbar-logo {
+    float: left;
+    padding: 2px 20px;
+  }
+  .logo{
+    color: #4169e1;
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+.tag{
+    font-family: 'Lora', serif;
+    color: #6480cb;
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+body{
+    background-color: #ebedf4;
+}
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .search-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+  }
+
+  .search-button {
+    padding: 10px 20px;
+    background-color: #4169e1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }

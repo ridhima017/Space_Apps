@@ -1,0 +1,169 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+  }
+
+  .col-7 {
+    grid-column: span 8;
+  }
+
+  .col-5 {
+    grid-column: span 4;
+  }
+
+  .search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 89vh;
+  }
+
+  .search-box {
+    margin-bottom: 10px;
+    padding: 10px;
+    margin-top: 0rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 60%;
+  }
+
+  .search-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .location-icon {
+    font-size: 20px;
+    margin-bottom: 10px;
+    margin-top: 4rem;
+  }
+
+  .location-image {
+    max-width: 100%;
+    height: auto;
+    margin-top: -5px;
+    margin-bottom: 50px;;
+  }
+
+  .location-content {
+    margin-top: 5rem;
+    text-align: center;
+  }
+
+  .navbar {
+    background-color: #5296df;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-logo {
+    padding: 10px 20px;
+  }
+
+  .logo {
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 2rem; /* Heading font size */
+    margin: 0;
+  }
+
+  .card {
+    
+    border-radius: 10px;
+    padding: 55px;
+    margin-top: 50px;
+    margin-left: 3px;
+    margin-right: 3px;
+    display: none; /* Hide the card initially */
+  }
+
+  .card h4 {
+    margin: 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+  }
+
+  .card .icon {
+    margin-right: 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="navbar-logo">
+    <h1 class="logo">FloodFocus</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="col-7">
+    <div id="map" style="width: 800px; height: 600px;"></div>
+  </div>
+  <div class="col-5" style="background-color:#a8dbef">
+    <div class="search-container">
+      <div class="location-content text-center">
+        <p style="font-weight: bold; font-size: 45px;">Check the current status</p>
+        <input type="text" class="search-box" placeholder="Enter pincode...">
+        <button class="search-button" onclick="showImageAndCard()">Search</button>
+      </div>
+
+      <div class="card" id="location-card">
+        <img src="farmer.jpeg" alt="Location Image" class="location-image">
+        <h4><span class="icon"><i class="fas fa-map-marker-alt"></i></span>Location: Dummy Location</h4>
+        <h4><span class="icon"><i class="fas fa-thermometer-half"></i></span>Temperature: 25°C</h4>
+        <h4><span class="icon"><i class="fas fa-cloud-showers-heavy"></i></span>Rainfall: 5mm</h4>
+        <h4><span class="icon"><i class="fas fa-tint"></i></span>Humidity: 70%</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showImageAndCard() {
+    document.querySelector(".location-content").style.display = "none"; // Hide location icon
+    document.querySelector("#location-card").style.display = "block"; // Show card content
+  }
+  var map = L.map('map').setView([0, 0], 2);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var points_data = JSON.parse('{{ points_data_json|escapejs }}');
+points_data.forEach(function(point) {
+    L.marker([point.latitude, point.longitude]).addTo(map)
+        .bindPopup(point.name);
+});
+</script>
+</body>
+</html>
